@@ -25,3 +25,8 @@ void UPuzzlePlatformsGameInstance::Host()
 	engine->AddOnScreenDebugMessage(-1, 2, FColor::Green, TEXT("This is Host GameInstacne"));
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Purple, TEXT("This is Host GameInstance"));
 }
+
+void UPuzzlePlatformsGameInstance::Join(const FString& Adress)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Purple, FString::Printf(TEXT("Adress = %s"), *Adress));
+}
