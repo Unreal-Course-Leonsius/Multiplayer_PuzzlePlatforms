@@ -57,6 +57,8 @@ void APlatformTrigger::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor*
 	{
 		if (!ensure(Platform)) return;    // without UnrealEditor is crashed when we open BP_PlatformTrigger
 		Platform->RemoveActiveTrigger();  // Because virtual function OnOverlapEnd() is called every time when we open BP_PlatformTrigger despite we start or not game
+
+		/// Arranage Branches
 	}
 }
 
