@@ -45,7 +45,7 @@ void APlatformTrigger::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AAct
 	//if (!ensure(PlatformsToTrigger)) return;
 	for (auto Platform : PlatformsToTrigger)
 	{
-		if (!ensure(Platform)) return;  // without UnrealEditor is crashed when we open BP_PlatformTrigger
+		if (!ensure(Platform)) return;  // without it UnrealEditor is crashed when we open BP_PlatformTrigger
 		Platform->AddActiveTrigger();   // Because virtual function OnOverlapBegin() is called every time when we open BP_PlatformTrigger despite we start or not game
 	}
 }
@@ -55,7 +55,7 @@ void APlatformTrigger::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor*
 	UE_LOG(LogTemp, Warning, TEXT("Overlap Deactivated"));
 	for (auto Platform : PlatformsToTrigger)
 	{
-		if (!ensure(Platform)) return;    // without UnrealEditor is crashed when we open BP_PlatformTrigger
+		if (!ensure(Platform)) return;    // without it UnrealEditor is crashed when we open BP_PlatformTrigger
 		Platform->RemoveActiveTrigger();  // Because virtual function OnOverlapEnd() is called every time when we open BP_PlatformTrigger despite we start or not game
 
 		/// Arranage Branches
