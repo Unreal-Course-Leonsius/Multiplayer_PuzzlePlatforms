@@ -2,6 +2,9 @@
 
 #include "MovingPlatform.h"
 
+#include "Edit_Tools/HandTools.h"
+
+
 
 AMovingPlatform::AMovingPlatform()
 {
@@ -35,6 +38,11 @@ void AMovingPlatform::BeginPlay()
 
 	GlobalStartLocation = GetActorLocation();
 	GlobalTargetLocation = GetTransform().TransformPosition(TargetLocation);
+
+	FString Test = "HandTools Test";
+	LOG_S(Test);
+
+
 }
 
 void AMovingPlatform::Tick(float DeltaTime)
@@ -66,6 +74,5 @@ void AMovingPlatform::Tick(float DeltaTime)
 		}
 
 	}
-
 
 }
