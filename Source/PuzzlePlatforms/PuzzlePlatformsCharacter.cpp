@@ -9,6 +9,9 @@
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
 
+#include "DrawDebugHelpers.h"
+#include "Engine/Engine.h"
+
 //////////////////////////////////////////////////////////////////////////
 // APuzzlePlatformsCharacter
 
@@ -45,6 +48,8 @@ APuzzlePlatformsCharacter::APuzzlePlatformsCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+
+	Vector = FVector(50, 100, 80);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -131,4 +136,38 @@ void APuzzlePlatformsCharacter::MoveRight(float Value)
 		// add movement in that direction
 		AddMovementInput(Direction, Value);
 	}
+}
+
+
+/// we don't have here class space and this fucntion is not class member it outside of class
+FString GetEnumText(ENetRole Role)
+{
+	switch (Role)
+	{
+	case ROLE_None:
+		return "None";
+	case ROLE_SimulatedProxy:
+		return "SimulatedProxy";
+	case ROLE_AutonomousProxy:
+		return "AutonomousProxy";
+	case ROLE_Authority:
+		return "Authority";
+	default:
+		return "ERROR";
+	}
+}
+
+void APuzzlePlatformsCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	DrawDebugString(GetWorld(), FVector(0, 0, 100), GetEnumText(Role), this, FColor::White, DeltaTime);
+
+	if (IsLocallyControlled())
+	{
+		Vector = Vector * 100 * DeltaTime;
+		UEngine* engine = GetGameInstance()->GetEngine();
+		engine->AddOnScreenDebugMessage(-1, 2, FColor::Green, FString::Printf(TEXT("Vector = %s"), *Vector.ToString()));
+	}
+	
 }

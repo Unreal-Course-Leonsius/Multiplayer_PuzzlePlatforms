@@ -6,6 +6,7 @@
 
 
 
+
 AMovingPlatform::AMovingPlatform()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -24,6 +25,7 @@ void AMovingPlatform::RemoveActiveTrigger()
 	{
 		ActiveTriggers--;
 	}
+
 }
 
 void AMovingPlatform::BeginPlay()
@@ -42,12 +44,13 @@ void AMovingPlatform::BeginPlay()
 	FString Test = "HandTools Test";
 	LOG_S(Test);
 
-
 }
+
 
 void AMovingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
 
 	if (ActiveTriggers > 0)
 	{
